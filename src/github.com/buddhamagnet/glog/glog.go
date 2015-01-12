@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/buddhamagnet/glog/handlers"
 	"github.com/gorilla/mux"
+	"log"
 	"net/http"
 )
 
@@ -12,6 +13,6 @@ func main() {
 
 	r.HandleFunc("/", handlers.HomeHandler)
 	r.HandleFunc("/{post}", handlers.PostHandler)
-
-	http.ListenAndServe(":8000", r)
+    log.Println("buddhamagnet rising on port 8000")
+	log.Fatal(http.ListenAndServe(":8000", r))
 }
