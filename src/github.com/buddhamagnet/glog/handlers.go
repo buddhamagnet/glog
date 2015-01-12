@@ -14,7 +14,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func PostHandler(w http.ResponseWriter, r *http.Request) {
-	fileread, _ := ioutil.ReadFile("posts/" + r.URL.Path[1:] + ".md")
+	fileread, _ := ioutil.ReadFile(r.URL.Path[1:] + ".md")
 	lines := strings.Split(string(fileread), "\n")
 	t := template.New("post.html")
 	t, _ = t.ParseFiles("post.html")
