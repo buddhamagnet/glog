@@ -1,1 +1,1 @@
-web: glog
+web: glog -port=$PORT
