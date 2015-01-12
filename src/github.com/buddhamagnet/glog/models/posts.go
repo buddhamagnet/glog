@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/russross/blackfriday"
+	"html/template"
 	"io/ioutil"
 	"path/filepath"
 	"strings"
@@ -10,8 +11,12 @@ import (
 type Post struct {
 	Title string
 	Date  string
-	Body  string
+	Body  template.HTML
 	File  string
+}
+
+func (post Post) Teaser() template.HTML {
+	return post.Body[:100] + "..."
 }
 
 func GetPosts() []Post {
@@ -33,7 +38,7 @@ func NewPost(lines []string, file string) Post {
 	post := Post{
 		string(lines[0]),
 		string(lines[1]),
-		body,
+		template.HTML(body),
 		file,
 	}
 	return post
