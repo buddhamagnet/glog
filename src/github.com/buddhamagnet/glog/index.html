@@ -1,8 +1,53 @@
 <html>
+  <head>
+  	<link rel="stylesheet" type="text/css" href="/assets/foundation.css"/>
+  	<title>buddhamagnet</title>
   <body>
-    <h1><a href="\">buddhamagnet</a></h1>
-    {{range .}}
-      <a href="/{{.File}}"><h2>{{.Title}} ({{.Date}})</h2></a>
-    {{end}}
+  	<div class="row">
+      <div class="large-12 columns">
+        <div class="nav-bar right">
+          <ul class="button-group">
+            <li><a href="http://twitter.com/buddhamagnet" class="button">twitter</a></li>
+            <li><a href="http://github.com/buddhamagnet" class="button">github</a></li>
+          </ul>
+        </div>
+        <h3><a href="/">buddhamagnet</a></h3>
+        <hr/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-9 columns" role="content">
+        {{range .}}
+        <article>
+            <h3><a href="/{{.File}}">{{.Title}}</a></h3>
+            <h6>{{.Date}}</h6>
+            <div class="row">
+              <div class="large-6 columns">
+                <p>{{.Teaser}}</p>
+              </div>
+            </div>
+          </article>
+          <hr/>
+        {{end}}
+     </div>
+     <footer class="row">
+        <div class="large-12 columns">
+          <hr/>
+          <div class="row">
+            <div class="large-6 columns">
+              <p><small>© buddhamagnet all rights under attack</small></p>
+            </div>
+            <div class="large-6 columns">
+              <ul class="inline-list right">
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Link 3</a></li>
+                <li><a href="#">Link 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </footer>
   </body>
 </html>
+
