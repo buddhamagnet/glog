@@ -1,14 +1,14 @@
 package main
 
 import (
-    "flag"
+	"flag"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 )
 
 func main() {
-	
+
 	port := flag.String("port", "8080", "HTTP port")
 	flag.Parse()
 
@@ -17,6 +17,6 @@ func main() {
 
 	r.HandleFunc("/", HomeHandler)
 	r.HandleFunc("/posts/{post}", PostHandler)
-    log.Println("buddhamagnet rising on port", *port)
-	log.Fatal(http.ListenAndServe(":" + *port, r))
+	log.Println("buddhamagnet rising on port", *port)
+	log.Fatal(http.ListenAndServe(":"+*port, r))
 }
