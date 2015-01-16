@@ -22,3 +22,12 @@ func PostHandler(w http.ResponseWriter, r *http.Request) {
 	post := NewPost(lines, r.URL.Path[1:])
 	t.Execute(w, post)
 }
+
+func PageHandler(w http.ResponseWriter, r *http.Request) {
+	fileread, _ := ioutil.ReadFile(r.URL.Path[1:] + ".md")
+	lines := strings.Split(string(fileread), "\n")
+	t := template.New("page.html")
+	t, _ = t.ParseFiles("page.html")
+	page := NewPage(lines, r.URL.Path[1:])
+	t.Execute(w, page)
+}

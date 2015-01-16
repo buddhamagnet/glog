@@ -17,6 +17,7 @@ func main() {
 
 	r.HandleFunc("/", HomeHandler)
 	r.HandleFunc("/posts/{post}", PostHandler)
+	r.HandleFunc("/pages/{page}", PageHandler)
 	log.Println("buddhamagnet rising on port", *port)
 	log.Fatal(http.ListenAndServe(":"+*port, r))
 }
