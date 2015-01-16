@@ -22,10 +22,10 @@ func (post Post) Teaser() template.HTML {
 func GetPosts() []Post {
 	a := []Post{}
 	files, _ := filepath.Glob("posts/*")
-	for _, f := range files {
-		file := strings.Replace(f, "posts/", "", -1)
+	for i := len(files) - 1; i >= 0; i-- {
+		file := strings.Replace(files[i], "posts/", "", -1)
 		file = strings.Replace(file, ".md", "", -1)
-		fileread, _ := ioutil.ReadFile(f)
+		fileread, _ := ioutil.ReadFile(files[i])
 		lines := strings.Split(string(fileread), "\n")
 		a = append(a, NewPost(lines, file))
 	}
