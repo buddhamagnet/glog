@@ -16,7 +16,10 @@ type Post struct {
 }
 
 func (post Post) Teaser() template.HTML {
-	return post.Body[:100] + "..."
+	if len(post.Body) >= 100 {
+		return post.Body[:100] + "..."
+	}
+	return post.Body
 }
 
 func GetPosts() []Post {
