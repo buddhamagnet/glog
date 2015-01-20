@@ -16,6 +16,7 @@ func main() {
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("./assets/"))))
 
 	r.HandleFunc("/", HomeHandler)
+    r.HandleFunc("/posts.rss", FeedHandler)
 	r.HandleFunc("/posts/{post}", PostHandler)
 	r.HandleFunc("/pages/{page}", PageHandler)
 	log.Println("buddhamagnet rising on port", *port)

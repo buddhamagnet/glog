@@ -12,6 +12,7 @@ type Post struct {
 	Title string
 	Date  string
 	Body  template.HTML
+	Extract string
 	File  string
 }
 
@@ -20,6 +21,13 @@ func (post Post) Teaser() template.HTML {
 		return post.Body[:100] + "..."
 	}
 	return post.Body
+}
+
+func (post Post) Excerpt() string {
+	if len(post.Extract) >= 100 {
+		return post.Extract[:100] + "..."
+	}
+	return post.Extract
 }
 
 func GetPosts() []Post {
@@ -37,11 +45,12 @@ func GetPosts() []Post {
 
 func NewPost(lines []string, file string) Post {
 	body := strings.Join(lines[2:], "\n")
-	body = string(blackfriday.MarkdownCommon([]byte(body)))
+	processed := string(blackfriday.MarkdownCommon([]byte(body)))
 	post := Post{
 		string(lines[0]),
 		string(lines[1]),
-		template.HTML(body),
+		template.HTML(processed),
+		body,
 		file,
 	}
 	return post
