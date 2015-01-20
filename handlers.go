@@ -29,6 +29,9 @@ func FeedHandler(w http.ResponseWriter, r *http.Request) {
 	posts := GetPosts()
 	feed.Items = []*feeds.Item{}
 	for _, post := range posts {
+		if post.Note == "excluded" {
+			continue
+		}
 		item := &feeds.Item{
 			Title: post.Title,
 			Link: &feeds.Link{Href: "http://glog.herokuapp.com/" + post.File},

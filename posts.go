@@ -11,6 +11,7 @@ import (
 type Post struct {
 	Title string
 	Date  string
+    Note string
 	Body  template.HTML
 	Extract string
 	File  string
@@ -44,11 +45,12 @@ func GetPosts() []Post {
 }
 
 func NewPost(lines []string, file string) Post {
-	body := strings.Join(lines[2:], "\n")
+	body := strings.Join(lines[3:], "\n")
 	processed := string(blackfriday.MarkdownCommon([]byte(body)))
 	post := Post{
 		string(lines[0]),
 		string(lines[1]),
+		string(lines[2]),
 		template.HTML(processed),
 		body,
 		file,
