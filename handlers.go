@@ -10,8 +10,12 @@ import (
 	"time"
 )
 
+func preprocess(w http.ResponseWriter) {
+	w.Header().Set("X-Clacks-Overhead", "GNU Terry Pratchett")
+}
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
+	preprocess(w)
 	t := template.New("index.html")
 	t, _ = t.ParseFiles("index.html")
 	posts := GetPosts()
@@ -19,6 +23,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func FeedHandler(w http.ResponseWriter, r *http.Request) {
+	preprocess(w)
 	feed := &feeds.Feed{
 	    Title: "buddhamagnet",
 	    Link: &feeds.Link{Href: "http://glog.herokuapp.com"},
@@ -46,6 +51,7 @@ func FeedHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func PostHandler(w http.ResponseWriter, r *http.Request) {
+	preprocess(w)
 	fileread, _ := ioutil.ReadFile(r.URL.Path[1:] + ".md")
 	lines := strings.Split(string(fileread), "\n")
 	t := template.New("post.html")
@@ -55,6 +61,7 @@ func PostHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func PageHandler(w http.ResponseWriter, r *http.Request) {
+	preprocess(w)
 	fileread, _ := ioutil.ReadFile(r.URL.Path[1:] + ".md")
 	lines := strings.Split(string(fileread), "\n")
 	t := template.New("page.html")
