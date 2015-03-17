@@ -12,6 +12,7 @@ import (
 
 func preprocess(w http.ResponseWriter) {
 	w.Header().Set("X-Clacks-Overhead", "GNU Terry Pratchett")
+	w.Header().Set("X-Github", "http://github.com/buddhamagnet")
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
