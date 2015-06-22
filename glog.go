@@ -2,9 +2,10 @@ package main
 
 import (
 	"flag"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func main() {
@@ -14,11 +15,9 @@ func main() {
 
 	r := mux.NewRouter()
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("./assets/"))))
-
 	r.HandleFunc("/", HomeHandler)
-    r.HandleFunc("/posts.rss", FeedHandler)
-	r.HandleFunc("/posts/{post}", PostHandler)
-	r.HandleFunc("/pages/{page}", PageHandler)
+	r.HandleFunc("/posts.rss", FeedHandler)
+	r.HandleFunc("/{content}/{article}", ContentHandler)
 	log.Println("buddhamagnet rising on port", *port)
 	log.Fatal(http.ListenAndServe(":"+*port, r))
 }
