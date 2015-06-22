@@ -1,18 +1,1 @@
-# Compiled Object files, Static and Dynamic libs (Shared Objects)
-*.o
-*.a
-*.so
-
-# Binaries 
-
-bin/*
-
-# Compiled binary in root (heroku)
-
 glog
-
-
-# Program specifics
-
-src/github.com/*
-!src/github.com/buddhamagnet
